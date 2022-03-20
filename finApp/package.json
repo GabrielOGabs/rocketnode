@@ -5,11 +5,12 @@
   "repository": "https://github.com/GabrielOGabs/rocketnode.git",
   "author": "Gabriel de Paula Santos <gabriel.santos@outlook.com>",
   "license": "MIT",
-  "scripts":{
-    "dev":"nodemon src/index.js"
+  "scripts": {
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "uuid": "^8.3.2"
   },
   "type": "module",
   "devDependencies": {
