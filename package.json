@@ -1,0 +1,11 @@
+{
+  "name": "rocketnode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/GabrielOGabs/rocketnode.git",
+  "author": "Gabriel de Paula Santos <gabriel.santos@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
