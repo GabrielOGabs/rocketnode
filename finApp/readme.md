@@ -7,7 +7,7 @@ Hi! this project consists in an REST API created in Node.Js with Express framewo
 In the banking simulation environment we will use an in-memmory database (which is just an array of Accounts object)
 
 #### The API must be able to:
- - [ ] Create a new account
+ - [X] Create a new account
  - [ ] Edit account information
  - [ ] Delete an account
  - [ ] Deposit cash
