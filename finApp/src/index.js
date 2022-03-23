@@ -63,5 +63,26 @@ app.post("/deposit", verifyIfAccountExists, (request, response) => {
     response.status(201).send();
 });
 
+//Deposit money
+app.post("/withdraw", verifyIfAccountExists, (request, response) => {
+    var { ammount } = request.body;
+
+    var balance = getCurrentBalance(request.account);
+
+    if (balance < ammount) {
+        return response.status(400).json({errorMessage: "Not enough balance."});
+    }
+
+    var operation = {
+        id: v4(),
+        type: "O",
+        value: ammount
+    };
+
+    request.account.operations.push(operation);
+
+    response.status(201).send();
+});
+
 
 app.listen(3333);
