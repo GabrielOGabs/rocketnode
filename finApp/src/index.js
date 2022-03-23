@@ -49,6 +49,7 @@ app.put("/account", verifyIfAccountExists, (request, response) => {
 });
 
 //Deposit money
+
 app.post("/deposit", verifyIfAccountExists, (request, response) => {
     var { ammount } = request.body;
 
@@ -84,5 +85,32 @@ app.post("/withdraw", verifyIfAccountExists, (request, response) => {
     response.status(201).send();
 });
 
+//Get current balance
+app.get("/account/balance", verifyIfAccountExists, (request, response) => {
+    return response.json({ currentBalance: getCurrentBalance(request.account) });
+});
+
+//Delete an account
+app.delete("/account", verifyIfAccountExists, (request, response) => {
+    const { account } = request;
+    const balance = getCurrentBalance(account);
+
+    if (balance !== 0) {
+        return response.status(400).json({ errorMessage: "It's not possible to delete accounts with remaining balance" })
+    }
+    var index = accounts.indexOf(account);
+    accounts.splice(index, 1);
+
+    return response.status(201).send();
+});
+
+const getCurrentBalance = (account) => {
+    return account.operations.reduce((acc, operation) => {
+        if (operation.type === "I") acc += operation.value;
+        if (operation.type === "O") acc -= operation.value;
+
+        return acc;
+    }, 0);
+};
 
 app.listen(3333);
