@@ -1,5 +1,4 @@
 import express from 'express';
-import { v4 } from 'uuid';
 import { v4 as uuidv4 } from 'uuid';
 import accounts from './inMemmoryDataBase.js';
 import verifyIfAccountExists from './verifyIfAccountExistsMiddleWare.js'
@@ -49,12 +48,11 @@ app.put("/account", verifyIfAccountExists, (request, response) => {
 });
 
 //Deposit money
-
 app.post("/deposit", verifyIfAccountExists, (request, response) => {
     var { ammount } = request.body;
 
     var operation = {
-        id: v4(),
+        id: uuidv4(),
         type: "I",
         value: ammount
     };
@@ -64,7 +62,7 @@ app.post("/deposit", verifyIfAccountExists, (request, response) => {
     response.status(201).send();
 });
 
-//Deposit money
+//Withdraw money
 app.post("/withdraw", verifyIfAccountExists, (request, response) => {
     var { ammount } = request.body;
 
