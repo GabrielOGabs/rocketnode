@@ -1,4 +1,5 @@
 import express from 'express';
+import { v4 } from 'uuid';
 import { v4 as uuidv4 } from 'uuid';
 import accounts from './inMemmoryDataBase.js';
 import verifyIfAccountExists from './verifyIfAccountExistsMiddleWare.js'
@@ -46,5 +47,21 @@ app.put("/account", verifyIfAccountExists, (request, response) => {
 
     return response.status(200).send();
 });
+
+//Deposit money
+app.post("/deposit", verifyIfAccountExists, (request, response) => {
+    var { ammount } = request.body;
+
+    var operation = {
+        id: v4(),
+        type: "I",
+        value: ammount
+    };
+
+    request.account.operations.push(operation);
+
+    response.status(201).send();
+});
+
 
 app.listen(3333);
