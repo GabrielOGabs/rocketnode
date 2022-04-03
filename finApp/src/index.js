@@ -88,6 +88,21 @@ app.get("/account/balance", verifyIfAccountExists, (request, response) => {
     return response.json({ currentBalance: getCurrentBalance(request.account) });
 });
 
+//Get current statement
+app.get("/account/statement", verifyIfAccountExists, (request, response) => {
+    const { account } = request;
+
+    const statement = account.operations.map(x => {
+        return { 
+            operation : x.type === 'I' ? '+' : '-',
+            value : x.value,
+            date : x.date
+        }
+    });
+
+    return response.json(statement);
+});
+
 //Delete an account
 app.delete("/account", verifyIfAccountExists, (request, response) => {
     const { account } = request;
