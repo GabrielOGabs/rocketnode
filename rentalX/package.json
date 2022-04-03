@@ -1,0 +1,8 @@
+{
+  "name": "rentalX",
+  "version": "1.0.0",
+  "description": "Rental api using express and typescript",
+  "main": "index.js",
+  "author": "Gabriel de Paula Santos",
+  "license": "MIT"
+}
